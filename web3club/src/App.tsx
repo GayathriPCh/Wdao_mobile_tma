@@ -5,6 +5,7 @@ import Blog from './pages/Blog';
 import EventsCalendar from './pages/EventsCalendar';
 import ProjectShowcase from './pages/ProjectShowcase';
 import News from './pages/News';
+import MintNFT from './pages/MintNFT';
 const App: React.FC = () => {
   return (
     <Router>
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/events-calendar" Component={EventsCalendar} />
           <Route path="/project-showcase" Component={ProjectShowcase} />
           <Route path="/news" Component={News} />
+          <Route path="/mint-nft" Component={MintNFT}/>
         </Routes>
       </div>
     </Router>
