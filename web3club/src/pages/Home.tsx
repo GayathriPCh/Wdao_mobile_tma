@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import cityscape from './cityscape.png'; // Make sure to import the background image
 import logo from './logo.png'; // Import your logo image
 import bgdao from './bgdao.jpg'; // Import the background image for the About Us section
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const link = document.createElement('link');
@@ -53,17 +55,33 @@ const Home: React.FC = () => {
     };
   }, []);
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(prevState => !prevState);
+  };
+
   return (
     <div style={styles.container}>
       <nav style={styles.navbar}>
         <Link to="/">
           <img src={logo} alt="Logo" style={styles.logo} />
         </Link>
-        <Link to="/blog" style={styles.navLink} className="nav-link">Blog</Link>
+        <Link to="/blog" style={styles.navLink} className="nav-link">Blogs</Link>
         <Link to="/events-calendar" style={styles.navLink} className="nav-link">Events Calendar</Link>
         <Link to="/project-showcase" style={styles.navLink} className="nav-link">Project Showcase</Link>
         <Link to="/news" style={styles.navLink} className="nav-link">News</Link>
         <Link to="/mint-nft" style={styles.navLink} className="nav-link">Mint NFT</Link>
+        <Link to="/digiboard" style={styles.navLink} className="nav-link">Digiboard</Link>
+        <div style={styles.dropdown}>
+          <button onClick={toggleDropdown} style={styles.dropdownButton} className="nav-link">
+            More
+          </button>
+          {isDropdownOpen && (
+            <div style={styles.dropdownMenu}>
+              <Link to="/reviews" style={styles.dropdownItem} className="dropdown-item">Review</Link>
+              <Link to="/stress-test" style={styles.dropdownItem} className="dropdown-item">Stress Test</Link>
+            </div>
+          )}
+        </div>
       </nav>
       <div ref={heroRef} style={styles.heroSection}>
         <div style={styles.arrowContainer}>
@@ -114,8 +132,6 @@ const Home: React.FC = () => {
 };
 
 const styles = {
- 
-  // CSS Reset
   '*': {
     margin: 0,
     padding: 0,
@@ -126,14 +142,14 @@ const styles = {
     color: '#ffffff',
     display: 'flex',
     flexDirection: 'column',
-    fontFamily: "'Audiowide', sans-serif", // Apply Audiowide font to all text
+    fontFamily: "'Audiowide', sans-serif",
   } as React.CSSProperties,
   navbar: {
     display: 'flex',
-    justifyContent: 'space-between', // Adjusted for logo placement
-    alignItems: 'center', // Center vertically
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: '1rem',
-    backgroundColor: '#000000', // Black background
+    backgroundColor: '#000000',
     position: 'sticky',
     top: 0,
     zIndex: 1000,
@@ -142,13 +158,13 @@ const styles = {
     color: '#ffffff',
     textDecoration: 'none',
     fontSize: '1rem',
-    marginLeft: '1rem', // Add some space between links
-    transition: 'color 0.3s ease-in-out', // Add transition for smooth color change
+    marginLeft: '1rem',
+    transition: 'color 0.3s ease-in-out',
   } as React.CSSProperties,
   logo: {
-    width: '5cm', // Width of 2cm
-    height: '2cm', // Height of 2cm
-    marginLeft: '1rem', // Adjusted for spacing
+    width: '5cm',
+    height: '2cm',
+    marginLeft: '1rem',
   } as React.CSSProperties,
   heroSection: {
     position: 'relative',
@@ -163,15 +179,15 @@ const styles = {
     position: 'absolute',
     bottom: '240px',
     left: '50%',
-    transform: 'translateX(-50%) rotate(90deg)', // Rotate the arrows
+    transform: 'translateX(-50%) rotate(90deg)',
   } as React.CSSProperties,
   arrow: {
-    color: '#ccff33', // Neon lime yellow color
+    color: '#ccff33',
     fontSize: '3rem',
     animation: 'floatUpDown 2s infinite',
   } as React.CSSProperties,
   section: {
-    height: '100vh', // Set height to 100% of viewport height
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -183,6 +199,32 @@ const styles = {
   visible: {
     opacity: 1,
   } as React.CSSProperties,
+  dropdown: {
+    position: 'relative',
+    display: 'inline-block',
+  } as React.CSSProperties,
+  dropdownButton: {
+    background: 'none',
+    border: 'none',
+    color: '#ffffff',
+    fontSize: '1rem',
+    cursor: 'pointer',
+  } as React.CSSProperties,
+  dropdownMenu: {
+    display: 'block',
+    position: 'absolute',
+    right: 0,
+    backgroundColor: '#000000',
+    boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+    zIndex: 1,
+  } as React.CSSProperties,
+  dropdownItem: {
+    color: '#ffffff',
+    textDecoration: 'none',
+    display: 'block',
+    padding: '12px 16px',
+    textAlign: 'left',
+  } as React.CSSProperties,
   socialLinks: {
     display: 'flex',
     justifyContent: 'center',
@@ -190,14 +232,13 @@ const styles = {
     marginTop: '2rem',
   } as React.CSSProperties,
   icon: {
-    width: '3rem', // Adjust as needed
-    height: '3rem', // Adjust as needed
-    margin: '0 1rem', // Adjust as needed
-    transition: 'transform 0.3s ease-in-out', // Add transition for smooth icon enlargement on hover
+    width: '3rem',
+    height: '3rem',
+    margin: '0 1rem',
+    transition: 'transform 0.3s ease-in-out',
   } as React.CSSProperties,
 };
 
-// Apply the styles globally
 const globalStyles = document.createElement('style');
 globalStyles.innerHTML = `
   * {
@@ -222,8 +263,12 @@ globalStyles.innerHTML = `
   .nav-link:hover {
     color: #cafc5d !important;
   }
+  .dropdown-item:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }
   .social-icon:hover {
-    transform: scale(1.2); // Enlarge the icon on hover
+    transform: scale(1.2);
   }
   @keyframes floatUpDown {
     0% { transform: translateX(0); }

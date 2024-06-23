@@ -6,6 +6,11 @@ import EventsCalendar from './pages/EventsCalendar';
 import ProjectShowcase from './pages/ProjectShowcase';
 import News from './pages/News';
 import MintNFT from './pages/MintNFT';
+import Reviews from './pages/Reviews';
+import Digiboard from './pages/Digiboard';
+import StressTest from './pages/Stresstest';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -16,7 +21,10 @@ const App: React.FC = () => {
           <Route path="/events-calendar" Component={EventsCalendar} />
           <Route path="/project-showcase" Component={ProjectShowcase} />
           <Route path="/news" Component={News} />
-          <Route path="/mint-nft" Component={MintNFT}/>
+          <Route path="/mint-nft" Component={MintNFT} />
+          <Route path="/reviews" Component={Reviews} />
+          <Route path="/digiboard" Component={Digiboard} />
+          <Route path="/stress-test" Component={StressTest} />
         </Routes>
       </div>
     </Router>
