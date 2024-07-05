@@ -16,6 +16,7 @@ import {
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
+import { optimismSepoliaTestnet } from './pages/Sepi';
 import {
   mainnet,
   polygon,
@@ -32,6 +33,7 @@ const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
   chains: [mainnet, polygon, optimism, arbitrum, base],
+  syncConnectedChain: true,
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 const queryClient = new QueryClient();
