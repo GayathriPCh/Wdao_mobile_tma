@@ -13,9 +13,9 @@ import '../fonts/fonts.css';
 import bg1 from './bg1.png';
 import WhatsInIt from './WhatsInIt';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import stressIcon from './stress.png'
 
 const Home: React.FC = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSocialDropdownOpen, setIsSocialDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -25,9 +25,7 @@ const Home: React.FC = () => {
     document.head.appendChild(link);
   }, []);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
+  
 
   const toggleSocialDropdown = () => {
     setIsSocialDropdownOpen((prevState) => !prevState);
@@ -56,26 +54,23 @@ const Home: React.FC = () => {
           <Link to="/digiboard" style={styles.navLink} className="nav-link">
             Digiboard
           </Link>
+          <Link to="/reviews" style={styles.navLink} className="nav-link">
+            Review
+          </Link>
+          <button style={styles.stressButton} className="nav-link" onClick={() => window.location.href = '/stress-test'}>
+  <img src={stressIcon} alt="Stress Icon" style={styles.stressIcon} />
+</button>
+
+          
           <div style={styles.dropdown}>
-            <button onClick={toggleDropdown} style={styles.dropdownButton} className="nav-link">
-              More
-            </button>
-            {isDropdownOpen && (
-              <div style={styles.dropdownMenu}>
-                <Link to="/reviews" style={styles.dropdownItem} className="dropdown-item">
-                  Review
-                </Link>
-                <Link to="/stress-test" style={styles.dropdownItem} className="dropdown-item">
-                  Stress Test
-                </Link>
-              </div>
-            )}
-          </div>
-          <ConnectButton />
-          <div style={styles.dropdown}>
-            <button onClick={toggleSocialDropdown} style={styles.dropdownButton} className="nav-link">
-              Social
-            </button>
+          <button
+    onClick={toggleSocialDropdown}
+    style={{ ...styles.socialButton, ...(isSocialDropdownOpen && styles.socialButtonHover) }}
+    className="nav-link"
+  >
+    Socials  <hr></hr><hr></hr>
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" className="css-i6dzq1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 
+  </button>
             {isSocialDropdownOpen && (
               <div style={styles.dropdownMenu}>
                 <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
@@ -105,6 +100,9 @@ const Home: React.FC = () => {
               </div>
             )}
           </div>
+        </div>
+        <div style={styles.connectButtonContainer}>
+          <ConnectButton />
         </div>
       </nav>
       <div style={styles.heroSection}>
@@ -153,7 +151,9 @@ const styles = {
   } as React.CSSProperties,
   navLinks: {
     display: 'flex',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
+    flex: 1,
   } as React.CSSProperties,
   navLink: {
     color: '#ffffff',
@@ -177,7 +177,7 @@ const styles = {
     position: 'absolute',
     top: '100%',
     right: 0,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0,0.9)',
     backdropFilter: 'blur(10px)',
     boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
     zIndex: 1,
@@ -229,6 +229,56 @@ const styles = {
   } as React.CSSProperties,
   heroSubtitle: {
     fontSize: '2rem',
+  } as React.CSSProperties,
+  connectButtonContainer: {
+    marginLeft: '1rem',
+  } as React.CSSProperties,
+  socialButton: {
+    padding: '10px 20px',
+    backgroundColor: '#212121',
+    border: '1px solid #fff',
+    borderRadius: '5px',
+    color: '#fff',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s, transform 0.3s',
+    display: 'flex',
+    alignItems: 'center',
+  } as React.CSSProperties,
+  socialButtonIcon: {
+    marginLeft: '10px',
+    width: '20px',
+    height: '20px',
+    fill: '#fff',
+    transition: 'transform 0.3s',
+  } as React.CSSProperties,
+  socialButtonHover: {
+    backgroundColor: '#333',
+    transform: 'translateY(-2px)',
+  } as React.CSSProperties,
+  stressButton: {
+    background: '#000',
+    border: 'none',
+    borderRadius: '10px',
+    padding: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease-in-out',
+  } as React.CSSProperties,
+  stressIcon: {
+    width: '40px',
+    height: '40px',
+    marginRight: '5px', // Adjust spacing between icon and text if needed
+    transition: 'transform 0.3s ease-in-out',
+  } as React.CSSProperties,
+  stressButtonHover: {
+    transform: 'scale(1.1)', // Enlarge button on hover
+  } as React.CSSProperties,
+  stressIconHover: {
+    transform: 'scale(1.1)', // Enlarge icon on hover
   } as React.CSSProperties,
 };
 
