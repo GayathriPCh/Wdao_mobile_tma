@@ -10,11 +10,13 @@ import twitterIcon from './twitter.svg';
 import discordIcon from './discord.svg';
 import gmailIcon from './gmail.svg';
 import '../fonts/fonts.css';
-import bg1 from './bg1.png'; // Import the background image
+import bg1 from './bg1.png';
 import WhatsInIt from './WhatsInIt';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 const Home: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSocialDropdownOpen, setIsSocialDropdownOpen] = useState(false);
 
   useEffect(() => {
     const link = document.createElement('link');
@@ -24,7 +26,11 @@ const Home: React.FC = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(prevState => !prevState);
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  const toggleSocialDropdown = () => {
+    setIsSocialDropdownOpen((prevState) => !prevState);
   };
 
   return (
@@ -32,51 +38,73 @@ const Home: React.FC = () => {
       <nav style={styles.navbar}>
         <div style={styles.brand}>Wallstreet DAO</div>
         <div style={styles.navLinks}>
-          <Link to="/blog" style={styles.navLink} className="nav-link">Blogs</Link>
-          <Link to="/events-calendar" style={styles.navLink} className="nav-link">Events Calendar</Link>
-          <Link to="/project-showcase" style={styles.navLink} className="nav-link">Project Showcase</Link>
-          <Link to="/news" style={styles.navLink} className="nav-link">News</Link>
-          <Link to="/mint-nft" style={styles.navLink} className="nav-link">Mint NFT</Link>
-          <Link to="/digiboard" style={styles.navLink} className="nav-link">Digiboard</Link>
+          <Link to="/blog" style={styles.navLink} className="nav-link">
+            Blogs
+          </Link>
+          <Link to="/events-calendar" style={styles.navLink} className="nav-link">
+            Events Calendar
+          </Link>
+          <Link to="/project-showcase" style={styles.navLink} className="nav-link">
+            Project Showcase
+          </Link>
+          <Link to="/news" style={styles.navLink} className="nav-link">
+            News
+          </Link>
+          <Link to="/mint-nft" style={styles.navLink} className="nav-link">
+            Mint NFT
+          </Link>
+          <Link to="/digiboard" style={styles.navLink} className="nav-link">
+            Digiboard
+          </Link>
           <div style={styles.dropdown}>
             <button onClick={toggleDropdown} style={styles.dropdownButton} className="nav-link">
               More
             </button>
             {isDropdownOpen && (
               <div style={styles.dropdownMenu}>
-                <Link to="/reviews" style={styles.dropdownItem} className="dropdown-item">Review</Link>
-                <Link to="/stress-test" style={styles.dropdownItem} className="dropdown-item">Stress Test</Link>
+                <Link to="/reviews" style={styles.dropdownItem} className="dropdown-item">
+                  Review
+                </Link>
+                <Link to="/stress-test" style={styles.dropdownItem} className="dropdown-item">
+                  Stress Test
+                </Link>
               </div>
-              
             )}
-            <ConnectButton />
           </div>
-        </div>
-        <div style={styles.socialLinks}>
-          <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-            <img src={discordIcon} alt="Discord" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <img src={linkedinIcon} alt="LinkedIn" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src={twitterIcon} alt="Twitter" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://medium.com" target="_blank" rel="noopener noreferrer">
-            <img src={mediumIcon} alt="Medium" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="mailto:example@gmail.com">
-            <img src={gmailIcon} alt="Gmail" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://github.com/">
-            <img src={githubIcon} alt="GitHub" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://t.me" target="_blank" rel="noopener noreferrer">
-            <img src={telegramIcon} alt="Telegram" style={styles.icon} className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={instagramIcon} alt="Instagram" style={styles.icon} className="social-icon" />
-          </a>
+          <ConnectButton />
+          <div style={styles.dropdown}>
+            <button onClick={toggleSocialDropdown} style={styles.dropdownButton} className="nav-link">
+              Social
+            </button>
+            {isSocialDropdownOpen && (
+              <div style={styles.dropdownMenu}>
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+                  <img src={discordIcon} alt="Discord" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <img src={linkedinIcon} alt="LinkedIn" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                  <img src={twitterIcon} alt="Twitter" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://medium.com" target="_blank" rel="noopener noreferrer">
+                  <img src={mediumIcon} alt="Medium" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="mailto:example@gmail.com">
+                  <img src={gmailIcon} alt="Gmail" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+                  <img src={githubIcon} alt="GitHub" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://t.me" target="_blank" rel="noopener noreferrer">
+                  <img src={telegramIcon} alt="Telegram" style={styles.icon} className="social-icon" />
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <img src={instagramIcon} alt="Instagram" style={styles.icon} className="social-icon" />
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
       <div style={styles.heroSection}>
@@ -85,7 +113,9 @@ const Home: React.FC = () => {
             <span style={styles.whiteText}>the </span>
             <span style={styles.gradientText}>Wallstreet DAO</span>
           </h1>
-          <p style={styles.heroSubtitle}>The first of its kind university DAO community, based KLH Uni</p>
+          <p style={styles.heroSubtitle}>
+            The first of its kind university DAO community, based KLH Uni
+          </p>
         </div>
       </div>
       <WhatsInIt />
@@ -107,16 +137,16 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '1rem',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Slightly transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     backdropFilter: 'blur(10px)',
     borderRadius: '10px',
-    position: 'fixed', // Change to fixed to overlay on top of the hero section
-    width: '100%', // Make navbar full width
+    position: 'fixed',
+    width: '100%',
     top: 0,
     zIndex: 1000,
   } as React.CSSProperties,
   brand: {
-    fontFamily: 'Moonhouse, sans-serif', // Apply custom font here
+    fontFamily: 'Moonhouse, sans-serif',
     fontSize: '1.5rem',
     fontWeight: 'bold',
     color: '#90f542',
@@ -129,12 +159,12 @@ const styles = {
     color: '#ffffff',
     textDecoration: 'none',
     fontSize: '0.9rem',
-    margin: '0 1rem', // Adjusted margin around nav links
+    margin: '0 1rem',
     transition: 'color 0.3s ease-in-out',
   } as React.CSSProperties,
   dropdown: {
     position: 'relative',
-    marginLeft: '1rem', // Added margin to separate "More" button from nav links
+    marginLeft: '1rem',
   } as React.CSSProperties,
   dropdownButton: {
     background: 'none',
@@ -145,7 +175,7 @@ const styles = {
   } as React.CSSProperties,
   dropdownMenu: {
     position: 'absolute',
-    top: '100%', // Position the dropdown below the "More" button
+    top: '100%',
     right: 0,
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     backdropFilter: 'blur(10px)',
@@ -159,11 +189,6 @@ const styles = {
     padding: '12px 16px',
     textAlign: 'left',
   } as React.CSSProperties,
-  socialLinks: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  } as React.CSSProperties,
   icon: {
     width: '2rem',
     height: '2rem',
@@ -171,31 +196,31 @@ const styles = {
     transition: 'transform 0.3s ease-in-out',
   } as React.CSSProperties,
   heroSection: {
-    backgroundImage: `url(${bg1})`, // Set bg1.png as background image
+    backgroundImage: `url(${bg1})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     width: '100%',
-    height: '100vh', // Take full viewport height
+    height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative', // Relative positioning for absolute children
+    position: 'relative',
   } as React.CSSProperties,
   heroContent: {
     textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent black background
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     padding: '1rem',
     borderRadius: '8px',
     maxWidth: '80%',
   } as React.CSSProperties,
   heroTitle: {
-    fontFamily: 'Glitch Goblin, sans-serif', // Apply custom font here
+    fontFamily: 'Glitch Goblin, sans-serif',
     fontSize: '7rem',
     marginBottom: '0.5rem',
     display: 'inline-block',
   } as React.CSSProperties,
   gradientText: {
-    background: `linear-gradient(90deg, #90f542, lime)`, // Lime yellow gradient background
+    background: `linear-gradient(90deg, #90f542, lime)`,
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   } as React.CSSProperties,
@@ -203,7 +228,7 @@ const styles = {
     color: '#ffffff',
   } as React.CSSProperties,
   heroSubtitle: {
-    fontSize: 'rem',
+    fontSize: '2rem',
   } as React.CSSProperties,
 };
 
