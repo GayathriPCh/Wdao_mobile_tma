@@ -12,7 +12,7 @@ import gmailIcon from './gmail.svg';
 import '../fonts/fonts.css';
 import bg1 from './bg1.png'; // Import the background image
 import WhatsInIt from './WhatsInIt';
-
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 const Home: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -47,7 +47,9 @@ const Home: React.FC = () => {
                 <Link to="/reviews" style={styles.dropdownItem} className="dropdown-item">Review</Link>
                 <Link to="/stress-test" style={styles.dropdownItem} className="dropdown-item">Stress Test</Link>
               </div>
+              
             )}
+            <ConnectButton />
           </div>
         </div>
         <div style={styles.socialLinks}>

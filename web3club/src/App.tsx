@@ -10,11 +10,42 @@ import Reviews from './pages/Reviews';
 import Digiboard from './pages/Digiboard';
 import StressTest from './pages/Stresstest';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  getDefaultConfig,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import { WagmiProvider } from 'wagmi';
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  base,
+} from 'wagmi/chains';
+import {
+  QueryClientProvider,
+  QueryClient,
+} from "@tanstack/react-query";
+
+const config = getDefaultConfig({
+  appName: 'My RainbowKit App',
+  projectId: 'YOUR_PROJECT_ID',
+  chains: [mainnet, polygon, optimism, arbitrum, base],
+  ssr: true, // If your dApp uses server side rendering (SSR)
+});
+const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (
+    <WagmiProvider config={config}>
+    <QueryClientProvider client={queryClient}>
+      <RainbowKitProvider>
+        {/* Your App */}
+     
     <Router>
       <div>
+        
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
@@ -28,7 +59,11 @@ const App: React.FC = () => {
         </Routes>
       </div>
     </Router>
+    </RainbowKitProvider>
+    </QueryClientProvider>
+  </WagmiProvider>
   );
+  
 };
 
 export default App;
