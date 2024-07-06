@@ -78,8 +78,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column', // Stack items vertically on mobile
     width: '100%',
+    maxWidth: '80%', // Adjust maximum width for content
     zIndex: 1, // Ensure content is above the overlay
+    padding: '2rem', // Add padding for spacing
   } as React.CSSProperties,
   gradientBox: {
     background: 'transparent',
@@ -87,13 +90,12 @@ const styles = {
     padding: '3rem',
     boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.3)',
     color: '#ffffff',
-    width: '45%',
-    height: '35rem',
+    width: '100%', // Take full width on mobile
+    maxWidth: '100%', // Ensure it adjusts to smaller screens
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '2rem',
     textAlign: 'center',
     backdropFilter: 'blur(10px)',
     border: '1px solid rgba(255, 255, 255, 0.18)',
@@ -131,6 +133,7 @@ const styles = {
     background: '-webkit-linear-gradient(#21ff25, #8c21ff)',
     '-webkit-background-clip': 'text',
     '-webkit-text-fill-color': 'transparent',
+    maxWidth: '90%', // Adjust for smaller screens
   } as React.CSSProperties,
   content: {
     color: '#21ff25',
@@ -139,6 +142,7 @@ const styles = {
     transform: 'rotate(-5deg)',
     fontFamily: 'Futuristic Shore, sans-serif', // Normal font for content
     textTransform: 'uppercase', // Capital letters for content
+    maxWidth: '90%', // Adjust for smaller screens
   } as React.CSSProperties,
   floatAnimation: {
     animation: 'float 3s ease-in-out infinite', // Apply floating animation
